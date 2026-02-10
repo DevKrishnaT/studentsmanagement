@@ -1,16 +1,77 @@
-# React + Vite
+# Students Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Students Management Dashboard built primarily to **learn and practice backend CRUD operations**, with a simple React-based UI used to interact with the API.
 
-Currently, two official plugins are available:
+The main focus of this project is **backend development, API design, and async data handling**, not UI-heavy experimentation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Project Focus
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project was created with a **backend-first approach**, focusing on:
 
-## Expanding the ESLint configuration
+- CRUD operations using MongoDB
+- RESTful API structure with Express
+- Proper async/await handling
+- Reliable update and delete flows
+- Preventing stale UI state caused by async race conditions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The frontend exists mainly to **test and visualize backend behavior**.
+
+---
+
+## Features
+
+- Create student records
+- Read all students from the database
+- Update student data (inline editing)
+- Delete student records
+- Immediate UI sync after backend updates
+
+---
+
+## UI Notes
+
+- Dark, minimal dashboard UI
+- Bento-style card layout
+- Inline editing instead of modal dialogs
+
+> UI is intentionally kept simple.  
+> The primary learning goal of this project is **backend CRUD and API integration**.
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- Tailwind CSS
+- Axios
+
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+
+---
+
+## Architecture Overview
+
+- Frontend components manage user interactions
+- Axios handles communication with the backend API
+- Express manages routing and request handling
+- MongoDB stores and updates student records
+
+---
+
+## Data Flow
+
+
+User Action
+ → React Component
+ → Axios API Request
+ → Express Route
+ → MongoDB
+ → Updated Response
+ → UI Sync

@@ -28,7 +28,7 @@ const BodyOfStudents = () => {
    const handleUpdate = async (id, updatedData) => {
     try {
       await UpdateStudent(id, updatedData);
-      fetchStudents();
+      return await fetchStudents();
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +37,7 @@ const BodyOfStudents = () => {
     <>
     <InputArea onStudentAdded={fetchStudents} />
   
-  <div className="grid grid-cols-6 gap-4 my-10 mx-5">
+  <div className="grid grid-cols-5 gap-4 my-10 mx-40">
    {students.map((student) => (
         <LoadStudents
           key={student._id}

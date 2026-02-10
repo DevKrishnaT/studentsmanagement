@@ -39,7 +39,7 @@ const StudentCard = ({ id, name, tableNo, onUpdate, onDelete }) => {
         "
       />
 
-      <div className="relative flex justify-between text-sm text-gray-400">
+      <div className="relative flex justify-between text-lg text-gray-400">
         {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
