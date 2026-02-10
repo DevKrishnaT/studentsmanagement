@@ -1,49 +1,119 @@
-import React from "react";
+import { useState } from "react";
 
+const StudentCard = ({ id, name, tableNo, onUpdate, onDelete }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editName, setEditName] = useState(name);
+  const [editTableNo, setEditTableNo] = useState(tableNo);
 
-const LoadStudents = () => {
+  const handleSave = () => {
+    onUpdate(id, {
+      name: editName,
+      tableNo: Number(editTableNo),
+    });
+    setIsEditing(false);
+  };
+
   return (
-    <div className="h-20 w-40 px-2 flex flex-col justify-center border rounded-2xl">
-      <div className="flex justify-between w-full ">
-        <div className="edit flex cursor-pointer hover:text-blue-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
+    <div
+      className="
+        group relative
+        rounded-2xl
+        p-5
+        bg-[#060010]
+        border border-white/15
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-purple-500/80
+        hover:shadow-[0_0_25px_rgba(132,0,255,0.35)]
+      "
+    >
+     
+      <div
+        className="
+          absolute inset-0 rounded-2xl
+          pointer-events-none
+          opacity-0
+          group-hover:opacity-100
+          transition
+          bg-[radial-gradient(circle_at_top,rgba(132,0,255,0.15),transparent_60%)]
+        "
+      />
+
+      <div className="relative flex justify-between text-sm text-gray-400">
+        {!isEditing ? (
+          <button
+            onClick={() => setIsEditing(true)}
+            className="hover:text-purple-400"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-            />
-          </svg>
-          Edit
-        </div>
-        <div className="Delete flex cursor-pointer hover:text-blue-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
+            Edit
+          </button>
+        ) : (
+          <button
+            onClick={handleSave}
+            className="hover:text-green-400"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-            />
-          </svg>
+            Save
+          </button>
+        )}
+
+        <button
+          onClick={() => onDelete(id)}
+          className="hover:text-red-400"
+        >
           Delete
-        </div>
+        </button>
       </div>
-      <div className="text-xl font-bold">hello</div>
-      <div className="tableNumber ">tableNumber</div>
+
+      
+      <div className="relative mt-4">
+        {!isEditing ? (
+          <>
+            <h3
+              onClick={() => setIsEditing(true)}
+              className="text-lg font-semibold text-white cursor-text"
+            >
+              {name}
+            </h3>
+            <p className="text-sm text-gray-400 mt-1">
+              Table No. {tableNo}
+            </p>
+          </>
+        ) : (
+          <div className="flex flex-col gap-2">
+            <input
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              autoFocus
+              className="
+                bg-transparent
+                border border-white/20
+                rounded-lg
+                px-3 py-1.5
+                text-white
+                outline-none
+                focus:border-purple-500
+              "
+            />
+
+            <input
+              type="number"
+              value={editTableNo}
+              onChange={(e) => setEditTableNo(e.target.value)}
+              className="
+                bg-transparent
+                border border-white/20
+                rounded-lg
+                px-3 py-1.5
+                text-white
+                outline-none
+                focus:border-purple-500
+              "
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default LoadStudents;
+export default StudentCard;
